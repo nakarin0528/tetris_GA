@@ -120,6 +120,17 @@ public class Field {
         }
     }
 
+    // 状態を出力
+    public void printField() {
+        for (int y = 0; y < ROW; y++) {
+            for (int x = 0; x < COL; x++) {
+              System.out.print(field[y][x]);
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }
+
     /**
      * ブロックがそろった行を消去
      *

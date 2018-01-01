@@ -85,6 +85,8 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
                 // さらに次のブロックを作成してパネルに表示
                 nextBlock = createBlock(field);
                 nextBlockPanel.set(nextBlock, blockImage);
+                // 状態を出力
+                this.field.printField();
             }
 
             // ブロックがそろった行を消す
