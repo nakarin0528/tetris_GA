@@ -28,7 +28,7 @@ public class Block {
     public static final int T_SHAPE = 9;
     public static final int REVERSE_L_SHAPE = 10;
 
-    public static final int WALL = 11;
+    public static final int WALL = 7;
 
     // ブロックの形を格納
     protected int[][] block = new int[ROW][COL];
