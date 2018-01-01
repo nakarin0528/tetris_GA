@@ -22,11 +22,11 @@ public class Block {
     // ブロックの名前
     public static final int BAR = 0;
     public static final int Z_SHAPE = 1;
-    public static final int SQUARE = 4;
-    public static final int L_SHAPE = 5;
-    public static final int REVERSE_Z_SHAPE = 6;
-    public static final int T_SHAPE = 9;
-    public static final int REVERSE_L_SHAPE = 10;
+    public static final int SQUARE = 2;
+    public static final int L_SHAPE = 3;
+    public static final int REVERSE_Z_SHAPE = 4;
+    public static final int T_SHAPE = 5;
+    public static final int REVERSE_L_SHAPE = 6;
 
     public static final int WALL = 7;
 
