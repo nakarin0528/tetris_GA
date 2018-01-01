@@ -168,23 +168,23 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
       // ZとSの形を多めにする
         int blockNo = rand.nextInt(11); // ブロックは0-6の7種類
         switch (blockNo) {
-            case Block.BAR :              // 0
+            case 0:
                 return new BarBlock(field);
-            case Block.Z_SHAPE :          // 1~3
+            case 1:
             case 2:
             case 3:
                 return new ZShapeBlock(field);
-            case Block.SQUARE :           // 4
+            case 4:
                 return new SquareBlock(field);
-            case Block.L_SHAPE :          // 5
+            case 5:
                 return new LShapeBlock(field);
-            case Block.REVERSE_Z_SHAPE :  // 6~8
+            case 6:
             case 7:
             case 8:
                 return new ReverseZShapeBlock(field);
-            case Block.T_SHAPE :          // 9
+            case 9:
                 return new TShapeBlock(field);
-            case Block.REVERSE_L_SHAPE :  // 10
+            case 10:
                 return new ReverseLShapeBlock(field);
         }
 
