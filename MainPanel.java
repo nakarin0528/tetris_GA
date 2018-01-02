@@ -45,6 +45,8 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
     // 次のブロックパネルへの参照
     private NextBlockPanel nextBlockPanel;
 
+    private ComputerController computerController;
+
     public MainPanel(ScorePanel scorePanel, NextBlockPanel nextBlockPanel) {
         // パネルの推奨サイズを設定、pack()するときに必要
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -53,6 +55,8 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
 
         this.scorePanel = scorePanel;
         this.nextBlockPanel = nextBlockPanel;
+        // computerのcontrollerにブロックを操作するものを渡す
+        this.computerController = new ComputerController(block);
 
         // ブロックのイメージをロード
         loadImage("image/block.gif");
@@ -80,13 +84,15 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
             // ブロックを下方向へ移動する
             boolean isFixed = block.move(Block.DOWN);
             if (isFixed) { // ブロックが固定されたら
-                // 次のブロックをセット
-                block = nextBlock;
-                // さらに次のブロックを作成してパネルに表示
-                nextBlock = createBlock(field);
-                nextBlockPanel.set(nextBlock, blockImage);
-                // 状態を出力
-                this.field.printField();
+              // コンピュータの操作をリセット
+              this.computerController.resetControl();
+              // 次のブロックをセット
+              block = nextBlock;
+              // さらに次のブロックを作成してパネルに表示
+              nextBlock = createBlock(field);
+              nextBlockPanel.set(nextBlock, blockImage);
+              // 状態を出力
+              this.field.printField();
             }
 
             // ブロックがそろった行を消す
@@ -107,6 +113,8 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
             // ゲームオーバーか
             if (field.isStacked()) {
                 System.out.println("Game Over");
+                // todo: スコアをGAに渡す処理を書く
+                
                 // スコアをリセット
                 scorePanel.setScore(0);
                 // フィールドをリセット
@@ -116,10 +124,14 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
                 nextBlockPanel.set(nextBlock, blockImage);
             }
 
+            this.computer();
+
             repaint();
 
             try {
-                Thread.sleep(200);
+              // ここでスピード調整
+              // 200がノーマルスピード
+              Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -133,6 +145,29 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
         field.draw(g, blockImage);
         // ブロックを描画
         block.draw(g, blockImage);
+    }
+
+    public void computer() {
+      // コンピュータが操作
+      // todo: 0〜4だけに修正する。
+      switch (this.computerController.controlBlock()) {
+        case 0:
+        case 1:
+        case 2:
+          block.move(Block.LEFT);
+          break;
+        case 3:
+        case 4:
+        case 5:
+          block.move(Block.RIGHT);
+          break;
+        case 6:
+          block.turn();
+          break;
+        case 7:
+          block.move(Block.DOWN);
+          break;
+      }
     }
 
     public void keyTyped(KeyEvent e) {
