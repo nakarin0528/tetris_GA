@@ -138,10 +138,15 @@ public class Field {
       depthCount++;
     }
 
-    // 一番そこを1として出力
+    // 一番底を1として出力
     for (int y = 1; y < ROW-1; y++) {
       for (int x = 1; x < COL-1; x++) {
-        System.out.print(this.depthField[y][x]);
+        if (this.depthField[y][x] < 10) {
+          System.out.printf("%d  ", this.depthField[y][x]);
+        } else {
+          System.out.printf("%d ", this.depthField[y][x]);
+        }
+
       }
       System.out.print("\n");
     }
