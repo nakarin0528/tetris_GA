@@ -141,6 +141,7 @@ public class Field {
     // 一番底を1として出力
     for (int y = 1; y < ROW-1; y++) {
       for (int x = 1; x < COL-1; x++) {
+        // 状態を出力する時に見やすくするためにスペースを追加
         if (this.depthField[y][x] < 10) {
           System.out.printf("%d  ", this.depthField[y][x]);
         } else {
@@ -151,6 +152,14 @@ public class Field {
       System.out.print("\n");
     }
     System.out.print("\n");
+  }
+
+  public int[][] returnField() {
+    return this.field;
+  }
+
+  public int[][] returnDepthField() {
+    return this.depthField;
   }
 
   /**
