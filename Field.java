@@ -17,11 +17,13 @@ public class Field {
 
     // フィールド
     private int[][] field;
+    private int[][] depthField;
     // フィールドのイメージ
     private int[][] fieldImage;
 
     public Field() {
         field = new int[ROW][COL];
+        depthField = new int [ROW][COL];
         fieldImage = new int[ROW][COL];
 
         // フィールドを初期化
@@ -122,9 +124,24 @@ public class Field {
 
     // 状態を出力
     public void printField() {
-        for (int y = 0; y < ROW; y++) {
-            for (int x = 0; x < COL; x++) {
-              System.out.print(field[y][x]);
+        //壁は出力させない
+        int depthCount = 1;
+        //深さを計算する
+        for (int y = ROW-2; y > 0; y--) {
+            for (int x = COL-2; x > 0; x--) {
+              if (this.field[y][x] == 1) {
+                this.depthField[y][x] = depthCount;
+              } else {
+                this.depthField[y][x] = 0;
+              }
+            }
+            depthCount++;
+        }
+
+        // 一番そこを1として出力
+        for (int y = 1; y < ROW-1; y++) {
+            for (int x = 1; x < COL-1; x++) {
+              System.out.print(this.depthField[y][x]);
             }
             System.out.print("\n");
         }
