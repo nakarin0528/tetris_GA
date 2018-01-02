@@ -68,6 +68,7 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
         block = createBlock(field);
         nextBlock = createBlock(field);
         nextBlockPanel.set(nextBlock, blockImage);
+        // todo: ここに最初のコンピュータの操作を指示？？
 
         addKeyListener(this);
 
@@ -90,6 +91,9 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
               block = nextBlock;
               // さらに次のブロックを作成してパネルに表示
               nextBlock = createBlock(field);
+
+              // todo: ここで、次のブロックのコンピュータの操作を処理？
+
               nextBlockPanel.set(nextBlock, blockImage);
               // 状態を出力
               this.field.printField();
@@ -114,7 +118,7 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
             if (field.isStacked()) {
                 System.out.println("Game Over");
                 // todo: スコアをGAに渡す処理を書く
-                
+
                 // スコアをリセット
                 scorePanel.setScore(0);
                 // フィールドをリセット
