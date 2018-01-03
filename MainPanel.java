@@ -127,7 +127,10 @@ public class MainPanel extends JPanel implements KeyListener, Runnable {
         nextBlock = createBlock(field);
         nextBlockPanel.set(nextBlock, blockImage);
       }
-
+      while (this.computerController.currentCount < this.computerController.controlCount+1) {
+        this.computer();
+      }
+      // 一気に落とすため
       this.computer();
 
       repaint();

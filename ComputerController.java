@@ -6,8 +6,8 @@ public class ComputerController {
   private Random rand;
   // private int controlCount = 0;
   // テストのために20回にセット
-  private int controlCount = 40;
-  private int currentCount = 0;
+  public int controlCount = 100;
+  public int currentCount = 0;
 
   public ComputerController(Block block) {
     this.block = block;
